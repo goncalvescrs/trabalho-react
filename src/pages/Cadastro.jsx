@@ -45,22 +45,24 @@ const Cadastro = () => {
 
   return (
     <>
-      <h2>Cadastro</h2>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="name">Nome:</label>
-        <br />
-        <input id="name" type="text" value={name} onChange={handleNameChange} />
-        <p />
-        <label htmlFor="email">Email:</label>
-        <br />
-        <input id="email" type="email" value={email} onChange={handleEmailChange} />
-        <p />
-        <label htmlFor="password">Senha:</label>
-        <br />
-        <input id="password" type="password" value={password} onChange={handlePasswordChange} />
-        <p />
-        <button type="submit">Cadastrar</button>
-      </form>
+      <div className="login-form">
+        <h2>Cadastro</h2>
+        <form onSubmit={handleSubmit}>
+          <label htmlFor="name">Nome:</label>
+          <br />
+          <input id="name" type="text" value={name} onChange={handleNameChange} />
+          <p />
+          <label htmlFor="email">Email:</label>
+          <br />
+          <input id="email" type="email" value={email} onChange={handleEmailChange} />
+          <p />
+          <label htmlFor="password">Senha:</label>
+          <br />
+          <input id="password" type="password" value={password} onChange={handlePasswordChange} />
+          <p />
+          <button type="submit">Cadastrar</button>
+        </form>
+      </div>
     </>
   );
 };
