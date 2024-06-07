@@ -1,16 +1,12 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import './App.css';
+import Cadastro from './pages/Cadastro';
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
-      <h1>Trabalho grupo 02</h1>
+      <Cadastro />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
