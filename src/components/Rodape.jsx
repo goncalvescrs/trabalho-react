@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 const Rodape = () => {
     return (
         <>
-            <p>=================================</p>
+            <hr /><br /><br />
             <p> RODAPE </p>
             <p> direitos reservados @</p>
         </>
