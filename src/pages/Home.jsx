@@ -5,6 +5,7 @@ import Cabecalho from "../components/Cabecalho";
 import Rodape from "../components/Rodape";
 import Banner from "../components/Banner"
 import { setItem } from "../services/LocalStorageFuncs";
+import { ProdutoArea } from "../css/ProdutoArea";
 
 const Home = () => {
     const [produtos, setProdutos] = useState([])
@@ -36,18 +37,21 @@ const Home = () => {
 
             <Banner />
             
-            {produtos.map((produto)=>
-                <Produto
-                    key={produto.id}
-                    id={produto.id}
-                    nome={produto.nome}
-                    imgUrl={produto.imgUrl}
-                    descricao={produto.descricao}
-                    preco={produto.preco}
-                    likes={produto.likes}
-                    clickCarrinho={()=> handleClickCarrinho(produto)}
-                />
-            )}
+            <ProdutoArea>
+                {produtos.map((produto)=>
+                    <Produto
+                        key={produto.id}
+                        id={produto.id}
+                        nome={produto.nome}
+                        imgUrl={produto.imgUrl}
+                        descricao={produto.descricao}
+                        preco={produto.preco}
+                        likes={produto.likes}
+                        clickCarrinho={()=> handleClickCarrinho(produto)}
+                    />
+                )}
+            </ProdutoArea>
+
             <Rodape />
         </>
     )
