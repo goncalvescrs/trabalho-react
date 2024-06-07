@@ -3,7 +3,7 @@ import api from "../api/api"
 import Produto from "../components/Produto"
 import Cabecalho from "../components/Cabecalho";
 import Rodape from "../components/Rodape";
-import Banner from "../components/Banner"
+import Banner from "../components/Banner";
 import { setItem } from "../services/LocalStorageFuncs";
 import { ProdutoArea } from "../css/ProdutoArea";
 

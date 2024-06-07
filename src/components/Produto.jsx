@@ -1,6 +1,4 @@
 import { Link } from 'react-router-dom';
-import { } from 'react-icons'
-import { ProdutoArea } from '../css/ProdutoArea';
 
 const Produto = ({ id, nome, imgUrl, descricao, preco, likes, clickCarrinho }) => {
     
