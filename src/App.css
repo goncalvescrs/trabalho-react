@@ -1,5 +1,6 @@
 body {
-  background-color: #000; /* dark background */
+  background-color: #000;
+  /* dark background */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -8,16 +9,24 @@ body {
 }
 
 .login-form {
-  background-color: #333; /* dark gray background */
+  background-color: #333;
+  /* dark gray background */
   padding: 4% 6%;
   border-radius: 5%;
-  box-shadow: 0 0 5% rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 5% rgba(0, 0, 0, 0.5),
+    0 0 5% rgba(255, 105, 180, 0.5),
+    /* rosa */
+    0 0 5% rgba(255, 255, 0, 0.5),
+    /* amarelo */
+    0 0 5% rgba(0, 0, 255, 0.5);
+  /* azul */
   width: 90%;
   margin: 0 auto;
 }
 
 .login-form h2 {
-  color: #21d4fd; /* blue color */
+  color: #21d4fd;
+  /* blue color */
   margin-top: 0;
   font-size: 2.5em;
 }
@@ -31,27 +40,32 @@ body {
   padding: 4% 6%;
   border: none;
   border-radius: 5%;
-  background-color: #444; /* dark gray background */
-  color: #fff; /* white text */
+  background-color: #444;
+  /* dark gray background */
+  color: #fff;
+  /* white text */
   font-size: 2em;
 }
 
 .login-form input[type="email"]:focus,
 .login-form input[type="password"]:focus {
-  border: 0.5% solid #21d4fd; /* blue border */
+  border: 0.5% solid #21d4fd;
+  /* blue border */
   box-shadow: 0 0 5% rgba(33, 212, 253, 0.5);
 }
 
 .login-form label {
-  color: #b721ff; /* pink color */
+  color: #b721ff;
+  /* pink color */
   font-size: 1.8em;
   margin-bottom: 4%;
 }
 
 .login-form a {
-  color: #21d4fd; /* blue color */
+  color: #21d4fd;
+  /* blue color */
   text-decoration: none;
-  font-size: 1.8em;
+  font-size: 1em;
 }
 
 .login-form a:hover {
@@ -59,8 +73,10 @@ body {
 }
 
 .login-form button[type="submit"] {
-  background-color: #21d4fd; /* blue color */
-  color: #fff; /* white text */
+  background-color: #21d4fd;
+  /* blue color */
+  color: #fff;
+  /* white text */
   padding: 4% 6%;
   border: none;
   border-radius: 5%;
@@ -69,12 +85,15 @@ body {
 }
 
 .login-form button[type="submit"]:hover {
-  background-color: #1a8cff; /* darker blue color */
+  background-color: #1a8cff;
+  /* darker blue color */
 }
 
 .login-form button[type="reset"] {
-  background-color: #b721ff; /* pink color */
-  color: #fff; /* white text */
+  background-color: #b721ff;
+  /* pink color */
+  color: #fff;
+  /* white text */
   padding: 4% 6%;
   border: none;
   border-radius: 5%;
@@ -83,5 +102,6 @@ body {
 }
 
 .login-form button[type="reset"]:hover {
-  background-color: #a315ff; /* darker pink color */
+  background-color: #a315ff;
+  /* darker pink color */
 }

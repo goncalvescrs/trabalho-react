@@ -6,7 +6,7 @@ const Login = () => {
   const [login, setLogin] = useState({ email: "", senha: "" });
 
   const handleChange = (e) => {
-    setLogin({...login, [e.target.name]: e.target.value });
+    setLogin({ ...login, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e) => {
@@ -55,11 +55,14 @@ const Login = () => {
             Esqueceu a senha?
           </a>
           <p />
-          <button className="submit-button" onClick={handleSubmit}>
-            Entrar
-          </button>
+          <div className="container-login-form-btn">
+            <button className="login-form-btn">Login</button>
+          </div>
           <br />
-          Não tem conta? <Link to="/Cadastro" className="register-link">Registrar</Link>
+          Não tem conta?{" "}
+          <Link to="/Cadastro" className="register-link">
+            Registrar
+          </Link>
         </form>
       </div>
     </>
