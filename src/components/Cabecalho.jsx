@@ -6,12 +6,11 @@ const Cabecalho = () => {
             <div>
                 <h3>Ecommerce</h3>
                 {/* liks das categorias */}
-                <Link to={`/Login`}>Login  | </Link>
-                <Link to={`/cadastro`}>Cadastro  </Link>
+                <Link to='/Login'>Login |</Link>
+                <Link to='/cadastro'> Cadastro |</Link>
+                <Link to='/carrinho'> Carrinho</Link>
             </div>
-
-            <p>=================================</p>
-
+            <br />
         </>
     )
 }

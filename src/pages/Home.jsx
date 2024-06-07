@@ -3,9 +3,12 @@ import api from "../api/api"
 import Produto from "../components/Produto"
 import Cabecalho from "../components/Cabecalho";
 import Rodape from "../components/Rodape";
+import Banner from "../components/Banner"
+import { setItem } from "../services/LocalStorageFuncs";
 
 const Home = () => {
     const [produtos, setProdutos] = useState([])
+    const [cart, setCart] = useState([])
 
     useEffect(() => {
         getTodosOsProdutos()
@@ -17,10 +20,21 @@ const Home = () => {
         setProdutos(response.data)
     }
 
+    const handleClickCarrinho = (obj) => {
+        const element = cart.find((e) => e.id == obj.id)
+        
+        if (!element) {
+            // const updatedCart = [...cart, obj];
+            setCart([...cart, obj])
+            setItem('carrinho', [...cart, obj])
+        }
+    }
+
     return (
         <>
             <Cabecalho />
 
+            <Banner />
             
             {produtos.map((produto)=>
                 <Produto
@@ -30,12 +44,10 @@ const Home = () => {
                     imgUrl={produto.imgUrl}
                     descricao={produto.descricao}
                     preco={produto.preco}
-                    categoria={produto.categoria}
-                    quantidade={produto.quantidade}
                     likes={produto.likes}
+                    clickCarrinho={()=> handleClickCarrinho(produto)}
                 />
             )}
-
             <Rodape />
         </>
     )
