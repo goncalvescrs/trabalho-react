@@ -1,3 +1,4 @@
+
 import { useState } from "react"
 import { useHistory } from "react-router-dom"
 import api from "../api/api"
@@ -6,28 +7,28 @@ const Login = () => {
     const [login, setLogin] = useState({email: '', senha:''})
     const history = useHistory()
 
-    const handleChange = (e) => {
-        setLogin({ ...login, [e.target.name]: e.target.value });
+  const handleChange = (e) => {
+    setLogin({ ...login, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+      e.preventDefault()
+      try {
+          const response = await api.get('/users')
+
+          const user = response.data.filter(data => data.email === login.email && data.senha === login.senha)
+
+          if (user.length > 0) {
+              alert('Login realizado com sucesso!')
+              history.push('/')
+          } else {
+              alert('Usuário ou senha inválidos')
+              handleZerar()
+          }
+
+      } catch (error) {
+          console.error('Erro ao realizar login', error)
       }
-
-    const handleSubmit = async (e) => {
-        e.preventDefault()
-        try {
-            const response = await api.get('/users')
-           
-            const user = response.data.filter(data => data.email === login.email && data.senha === login.senha)
-
-            if (user.length > 0) {
-                alert('Login realizado com sucesso!')
-                history.push('/')
-            } else {
-                alert('Usuário ou senha inválidos')
-                handleZerar()
-            }
-
-        } catch (error) {
-            console.error('Erro ao realizar login', error)
-        }
     }
     
     const handleZerar = () => {
