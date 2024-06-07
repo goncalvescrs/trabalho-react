@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react"
 import api from "../api/api"
 import Produto from "../components/Produto"
+import Cabecalho from "../components/Cabecalho";
+import Rodape from "../components/Rodape";
 
 const Home = () => {
     const [produtos, setProdutos] = useState([])
@@ -17,6 +19,9 @@ const Home = () => {
 
     return (
         <>
+            <Cabecalho />
+
+            
             {produtos.map((produto)=>
                 <Produto
                     key={produto.id}
@@ -29,8 +34,9 @@ const Home = () => {
                     quantidade={produto.quantidade}
                     likes={produto.likes}
                 />
-            
             )}
+
+            <Rodape />
         </>
     )
 }
