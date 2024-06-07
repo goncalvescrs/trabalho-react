@@ -1,5 +1,6 @@
 import { useState } from "react"
 import axios from "axios"
+import { Link } from 'react-router-dom';
 
 const Login = () => {
     const [login, setLogin] = useState({email: '', senha:''})
@@ -23,7 +24,7 @@ const Login = () => {
     }
     return (
         <>
-            <div>
+            <div className="login-form">
                 <form onSubmit={handleSubmit} onReset={(e) => {
                     handleZerar()
                 }}>
@@ -41,9 +42,9 @@ const Login = () => {
                     <p/>
                     <a href="#">Esqueceu a senha?</a>
                     <p/>
-                    <button>Entrar</button>
-                    <p/>
-                    <p>Não tem conta? <a href="#">Registrar</a></p>
+                    <button onClick={handleSubmit}>Entrar</button>
+                    <br/>
+                    Não tem conta? <Link to='/Cadastro'>Registrar</Link>
                 </form>
             </div>
         </>
