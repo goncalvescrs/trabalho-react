@@ -1,11 +1,12 @@
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
-import Home from '../pages/Home'
-import ProdutoEspecifico from '../pages/ProdutoEspecifico'
 import Carrinho from '../pages/Carrinho'
 import Categoria from '../pages/Categoria'
+import CompraRealizada from '../pages/CompraRealizada'
+import Home from '../pages/Home'
+import ProdutoEspecifico from '../pages/ProdutoEspecifico'
 
-import Login from '../pages/Login'
 import Cadastro from '../pages/Cadastro'
+import Login from '../pages/Login'
 
 const Routes = () => {
     return (
@@ -18,7 +19,7 @@ const Routes = () => {
                     <Route exact path='/categoria/:nome' component={Categoria} />
                     <Route exact path='/produto/:id' component={ProdutoEspecifico} />
                     <Route exact path='/carrinho' component={Carrinho} />
-                    {/* <Route exact path='/fim' component={PedidoRealizado} /> */}
+                    <Route exact path="/compra-realizada" component={CompraRealizada} />
                 </Switch>
             </BrowserRouter>
         </>

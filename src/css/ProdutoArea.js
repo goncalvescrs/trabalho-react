@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import { styled } from 'styled-components';
 
 export const ProdutoArea = styled.div`
     display: flex;
@@ -76,3 +76,5 @@ export const ProdutoArea = styled.div`
     }
 
 `
+
+

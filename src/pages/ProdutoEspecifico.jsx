@@ -1,5 +1,5 @@
-import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
+import { useParams } from "react-router-dom"
 import api from "../api/api"
 import { ProdutoPage } from "../css/ProdutoPage"
 import Cabecalho from "../components/Cabecalho"
