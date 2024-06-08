@@ -9,7 +9,6 @@ import { setItem } from "../services/LocalStorageFuncs";
 
 const Home = () => {
     const [produtos, setProdutos] = useState([])
-    const [cart, setCart] = useState([])
 
     useEffect(() => {
         getTodosOsProdutos()
@@ -21,21 +20,14 @@ const Home = () => {
         setProdutos(response.data)
     }
 
-    const handleClickCarrinho = (obj) => {
-        const element = cart.find((e) => e.id == obj.id)
-        
-        if (!element) {
-            // const updatedCart = [...cart, obj];
-            setCart([...cart, obj])
-            setItem('carrinho', [...cart, obj])
-        }
-    }
-
     return (
         <>
             <Cabecalho />
 
-            <Banner />
+            <Banner
+                img={'https://tpc.googlesyndication.com/simgad/15464926730141309314?'}
+                descrcao={"descricao do banner"}
+            />
             
             <ProdutoArea>
                 {produtos.map((produto)=>
@@ -47,10 +39,14 @@ const Home = () => {
                         descricao={produto.descricao}
                         preco={produto.preco}
                         likes={produto.likes}
-                        clickCarrinho={()=> handleClickCarrinho(produto)}
                     />
                 )}
             </ProdutoArea>
+
+            <Banner
+                img={'https://tpc.googlesyndication.com/simgad/10894917116371607010?'}
+                descrcao={"descricao do banner"}
+            />
 
             <Rodape />
         </>

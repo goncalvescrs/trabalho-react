@@ -1,10 +1,11 @@
-const Banner = () => {
+
+const Banner = ({ img, descricao }) => {
+
     return (
         <>
-            <hr />
-                <br /><p>BANNER COM ALGUMA INFORMAÇAO</p> <br />
-            <hr />
-            <br />
+            <div>
+                <img src={img} alt={descricao} />
+            </div>
         </>
     )
 }
