@@ -1,6 +1,4 @@
-import styled from "styled-components";
-
-
+import { styled } from 'styled-components';
 export const ProdutoArea = styled.div`
     Link {
             background: red;
@@ -37,3 +35,5 @@ export const ProdutoArea = styled.div`
     }
 
 `
+
+

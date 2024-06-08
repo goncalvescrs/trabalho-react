@@ -1,5 +1,5 @@
-import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
+import { useParams } from "react-router-dom"
 import api from "../api/api"
 import { ProdutoArea } from "../css/ProdutoArea"
 
@@ -29,7 +29,7 @@ const ProdutoEspecifico = () => {
     return (
         <>
             <ProdutoArea>
-                <div>
+                <div >
                     <img src={produto.imgUrl} alt={produto.descricao} />
                     <p>{produto.nome}</p>
                     <p>{produto.descricao}</p>
