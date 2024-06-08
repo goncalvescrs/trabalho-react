@@ -1,13 +1,20 @@
 import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
 import api from "../api/api"
-import { ProdutoArea } from "../css/ProdutoArea"
+import { ProdutoPage } from "../css/ProdutoPage"
+import Cabecalho from "../components/Cabecalho"
+import { setItem, getItem } from "../services/LocalStorageFuncs"
 
 const ProdutoEspecifico = () => {
     const { id } = useParams()
     const [produto, setProduto] = useState({})
+    const [cart, setCart] = useState([])
 
     useEffect(() => {
+        const storedCart = getItem('carrinho');
+        if (storedCart) {
+        setCart(storedCart);
+        }
         getProduto()
     }, [])
 
@@ -25,10 +32,22 @@ const ProdutoEspecifico = () => {
         window.location.reload()
     }
 
+    const handleClickCarrinho = (obj) => {
+        const element = cart.find((e) => e.id == obj.id)
+        
+        if (!element) {
+            const updatedCart = [...cart, obj];
+            setCart(updatedCart)
+            setItem('carrinho', updatedCart)
+        }
+    }
+
 
     return (
         <>
-            <ProdutoArea>
+            <Cabecalho />
+
+            <ProdutoPage>
                 <div>
                     <img src={produto.imgUrl} alt={produto.descricao} />
                     <p>{produto.nome}</p>
@@ -36,11 +55,14 @@ const ProdutoEspecifico = () => {
                     <h5>R$ {produto.preco}</h5>
                     <h6>{produto.categoria}</h6>
                     <h6>Estoque: {produto.quantidade}</h6>
-                    <button onClick={handleLikeClick}>❤️ Favoritar ({produto.likes})</button>
-                    <button>Adicionar ao Carrinho</button>
-                    <hr />
+                    <button className='likes' onClick={handleLikeClick}>❤️ Curtir ({produto.likes})</button>
+                    <button onClick={() => handleClickCarrinho(produto)}>Adicionar ao Carrinho</button>
+                    
+                    <button onClick={() => handleClickCarrinho(produto)}>
+                        <a href='/carrinho'>Finalizar compra</a>
+                    </button>
                 </div>
-            </ProdutoArea>
+            </ProdutoPage>
         </>
     )
 }

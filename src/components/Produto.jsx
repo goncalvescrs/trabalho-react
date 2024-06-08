@@ -1,18 +1,21 @@
-import { Link } from 'react-router-dom';
+import { LiaShippingFastSolid } from 'react-icons/lia';
+import { CiHeart } from "react-icons/ci";
 
-const Produto = ({ id, nome, imgUrl, descricao, preco, likes, clickCarrinho }) => {
+const Produto = ({ id, nome, imgUrl, descricao, preco, likes }) => {
     
 
     return (
         <>
-            <div >
-                <h4>{nome}</h4>
+            <div>
+                <a href={`/produto/${id}`}/>
                 <img src={imgUrl} alt={descricao} />
-                <h4>R$ {preco}</h4>
-                <h6>com pix ou 12x no cartão</h6>
-                <Link to={`/produto/${id}`}>Ver mais</Link>
-                {/* <button onClick={clickCarrinho}>Adicionar ao Carrinho</button> */}
-                <h6>❤️ likes ({likes})</h6>
+                <span>
+                    <h2>{nome}</h2>
+                    <h4>R${preco}</h4>
+                    <p>No pix ou 12x no cartão</p>
+                    <h5>Frete Grátis <LiaShippingFastSolid/></h5>
+                    <h6><CiHeart/> Curtidas ({likes})</h6>
+                </span>
             </div>
         </>
     )

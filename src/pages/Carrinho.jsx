@@ -1,36 +1,105 @@
-import React, { useState } from "react"
-import { getItem } from "../services/LocalStorageFuncs"
+import React, { useEffect, useState } from "react"
+import { getItem, setItem } from "../services/LocalStorageFuncs"
+import { CartArea, DivFinal } from "../css/CartArea"
+import Cabecalho from "../components/Cabecalho"
+import Rodape from "../components/Rodape"
+import api from "../api/api"
 
 const Carrinho = () => {
-    const [data, setData]= useState(getItem('carrinho') || [])
+    // const [data, setData] = useState(getItem('carrinho') || [])
+    // const [quantity, setQuantity] = useState(1);
+    const [data, setData] = useState(() => {
+        const initialData = getItem('carrinho') || [];
+        return initialData.map(e => ({ ...e, qtdItens: e.qtdItens || 1 }));
+    });
 
-        // if (element) {
-        //     const arrFilter = cart.filter((e) => e.id !== obj.id)
-        //     setCart(arrFilter)
-        //     setItem('carrinho', arrFilter)
-        // } else {
-        //     setCart([...cart, obj])
-        //     setItem('carrinho', [...cart, obj])
-        // }
+    useEffect(() => {
+        setItem('carrinho', data);
+    }, [data]);
+
+    const removeItem = (obj) => {
+        const arrFilter = data.filter((e) => e.id !== obj.id)
+        setData(arrFilter)
+        setItem('carrinho', arrFilter)
+    }
+    
+    const subTotal = data.reduce((acc, cur) => acc + cur.preco, 0)
+
+    const aumentar = (id) => {
+        setData(data.map(e =>
+            e.id === id ? { ...e, qtdItens: e.qtdItens + 1 } : e
+        ));
+    };
+
+    const diminuir = (id) => {
+        setData(data.map(e =>
+            e.id === id ? { ...e, qtdItens: Math.max(e.qtdItens - 1, 1) } : e
+        ));
+    };
+
+    const finalizarCompra = async () => {
+        const clienteId = "id_do_cliente_logado"; // Substitua pelo ID do cliente logado
+
+        const pedido = {
+            valorTotal: subTotal,
+            clienteId,
+            itens: data.map(e => ({ produtoId: e.id, quantidade: e.qtdItens }))
+        };
+
+        try {
+            const response = await api.post('/pedido', pedido);
+            console.log('Pedido criado com sucesso:', response.data);
+            // Limpar o carrinho após finalizar a compra
+            setData([]);
+        } catch (error) {
+            console.error('Erro ao criar pedido:', error);
+        }
+    };
 
     return (
         <>
-            <h1>cart</h1>
-            <div>
-                {
+            <Cabecalho />
+            <h1>Carrinho</h1>
+            <CartArea>
+                {data.length === 0 ? (
+                    <>
+                        <p>O carrinho está vazio.</p>
+                        <a href='/'><h2>Voltar a pagina principal</h2></a>
+                    </>
+                ) : (
                     data.map((e) => (
                         <div key={e.id}>
-                            <h4>{e.nome}</h4>
                             <img src={e.imgUrl} alt={e.descricao} />
-                            <br />
-                            <p>{e.nome}</p>
-                            <h6>❤️ likes ({e.likes})</h6>
+                            <h4>{e.nome}</h4>
                             <h5>R$ {e.preco}</h5>
-                            <button>Excluir</button>
+                            <span>
+                                <label htmlFor={`quantidade-${e.id}`}>Quantidade: </label>
+                                <input onClick={() => diminuir(e.id)} type="button" value="-" />
+                                <input
+                                    id={`quantidade-${e.id}`}
+                                    name="quantidade"
+                                    className="text"
+                                    size="1"
+                                    type="text"
+                                    maxLength="5"
+                                    value={e.qtdItens}
+                                    readOnly
+                                />
+                                <input onClick={() => aumentar(e.id)} type="button" value="+" />
+                            </span>
+                            <button onClick={() => removeItem(e)}>x</button>
                         </div>
                     ))
-                }
-            </div>
+                )}
+            </CartArea>
+            {data.length > 0 && (
+                <DivFinal>
+                    <h3>{`SubTotal: R$ ${subTotal.toFixed(2)}`}</h3>
+                    <br />
+                    <button onClick={finalizarCompra}><a href='/'>Finalizar Compra</a></button>
+                </DivFinal>
+            )}
+            <Rodape />
         </>
     )
 }
