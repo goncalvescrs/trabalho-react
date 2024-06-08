@@ -3,14 +3,17 @@ import { getItem, setItem } from "../services/LocalStorageFuncs"
 import { CartArea, DivFinal } from "../css/CartArea"
 import Cabecalho from "../components/Cabecalho"
 import Rodape from "../components/Rodape"
+import { useHistory } from "react-router-dom"
 import api from "../api/api"
 
 const Carrinho = () => {
-    // const [data, setData] = useState(getItem('carrinho') || [])
-    // const [quantity, setQuantity] = useState(1);
+    const history = useHistory();
     const [data, setData] = useState(() => {
         const initialData = getItem('carrinho') || [];
-        return initialData.map(e => ({ ...e, qtdItens: e.qtdItens || 1 }));
+        return (
+            initialData.map(e => ({ ...e, qtdItens: e.qtdItens || 1 }))
+        )
+            
     });
 
     useEffect(() => {
@@ -38,12 +41,25 @@ const Carrinho = () => {
     };
 
     const finalizarCompra = async () => {
-        const clienteId = "id_do_cliente_logado"; // Substitua pelo ID do cliente logado
+        const usuarioLogado = getItem('usuarioLogado');
+            
+        if (!usuarioLogado) {
+            alert('Você precisa estar logado para finalizar a compra.');
+            history.push('/login'); // Redirecionar para a página de login
+            return;
+        }
+
+        const usuarioLogadoString = JSON.stringify(getItem('usuarioLogado'));
+        // console.log('Usuário logado como string:', usuarioLogadoString); 
+
+        // Encontre e extraia o valor do ID da string
+        const userId = usuarioLogadoString.split('"id":"')[1].split('"')[0];
+        // console.log('ID do usuário:', userId); // so pra confirmar e ver no console
 
         const pedido = {
             valorTotal: subTotal,
-            clienteId,
-            itens: data.map(e => ({ produtoId: e.id, quantidade: e.qtdItens }))
+            userId: userId,
+            itens: data.map(e => ({ idProduto: e.id, quantidade: e.qtdItens }))
         };
 
         try {
@@ -51,6 +67,7 @@ const Carrinho = () => {
             console.log('Pedido criado com sucesso:', response.data);
             // Limpar o carrinho após finalizar a compra
             setData([]);
+            history.push('/compra-realizada'); // Redirecionar para a página de confirmação de compra
         } catch (error) {
             console.error('Erro ao criar pedido:', error);
         }
@@ -96,7 +113,7 @@ const Carrinho = () => {
                 <DivFinal>
                     <h3>{`SubTotal: R$ ${subTotal.toFixed(2)}`}</h3>
                     <br />
-                    <button onClick={finalizarCompra}><a href='/'>Finalizar Compra</a></button>
+                    <button onClick={finalizarCompra}>Finalizar Compra</button>
                 </DivFinal>
             )}
             <Rodape />

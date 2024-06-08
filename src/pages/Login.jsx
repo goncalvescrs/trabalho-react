@@ -2,6 +2,7 @@
 import { useState } from "react"
 import { useHistory } from "react-router-dom"
 import api from "../api/api"
+import { getItem, setItem } from "../services/LocalStorageFuncs"
 
 const Login = () => {
     const [login, setLogin] = useState({email: '', senha:''})
@@ -20,7 +21,14 @@ const handleSubmit = async (e) => {
 
             if (user.length > 0) {
                 alert('Login realizado com sucesso!')
-                history.push('/')
+                setItem('usuarioLogado', user); // Salva o usuário logado no localStorage
+
+                const carrinho = getItem('carrinho') || [];
+                if (carrinho.length === 0) {
+                    history.push('/')
+                } else {
+                    history.push('/carrinho')
+                }
             } else {
                 alert('Usuário ou senha inválidos')
                 handleZerar()
