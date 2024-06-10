@@ -3,10 +3,11 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import api from "../../api/api";
 import Banner from "../../components/Banner";
-import Cabecalho from "../../components/cabecalho";
+import Cabecalho from "../../components/cabecalho/Cabecalho";
 import Rodape from "../../components/Rodape";
-import Produto from "../../components/CardProduto";
-import "./style.css";
+import "./home.css";
+import CardProduto from "../../components/CardProduto";
+import { ProdutosStyle } from "../../css/ProdutosStyle";
 
 const Home = () => {
     const [produtos, setProdutos] = useState([]);
@@ -31,20 +32,19 @@ const Home = () => {
                 />
             </div>
             
-            <div className="ProdutoArea">
+            <ProdutosStyle>
                 {produtos.map((produto) => (
-                    <Link to={`/produto/${produto.id}`} key={produto.id} className="Produto">
-                        <Produto
-                            id={produto.id}
-                            nome={produto.nome}
-                            imgUrl={produto.imgUrl}
-                            descricao={produto.descricao}
-                            preco={produto.preco}
-                            likes={produto.likes}
-                        />
-                    </Link>
+                    <CardProduto
+                        key={produto.id}
+                        id={produto.id}
+                        nome={produto.nome}
+                        imgUrl={produto.imgUrl}
+                        descricao={produto.descricao}
+                        preco={produto.preco}
+                        likes={produto.likes}
+                    />
                 ))}
-            </div>
+            </ProdutosStyle>
 
             <div className="banner">
                 <Banner

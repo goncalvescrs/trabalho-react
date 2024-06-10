@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import api from "../../api/api";
-import "./style.css"
+import "./login.css"
 
 const Login = () => {
   const history = useHistory();

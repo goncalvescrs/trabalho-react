@@ -1,15 +1,19 @@
 import { Link } from "react-router-dom";
-import "./style.css"
+import "./cabecalho.css"
 
-const Header = () => {
+const Cabecalho = () => {
   return (
     <header>
       <nav>
         <ul>
-          <li><Link to="#">Home</Link></li>
-          <li><Link to="#">Produtos</Link></li>
-          <li><Link to="#">Sobre</Link></li>
-          <li><Link to="#">Contato</Link></li>
+          <li><Link to='/'>Home</Link></li>
+          <li><Link to={'/categoria/eletronico'}>Eletronico</Link></li>
+          <li><Link to={'/categoria/teclado'}>Teclado</Link></li>
+        </ul>
+        <ul>
+          <li><Link to='/Login'> Login |</Link></li>
+          <li><Link to='/cadastro'> Cadastro |</Link></li>
+          <li><Link to='/carrinho'> Carrinho</Link></li>
         </ul>
       </nav>
       <div className="logo">
@@ -27,4 +31,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default Cabecalho;

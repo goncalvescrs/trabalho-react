@@ -1,9 +1,9 @@
 import { useParams } from "react-router-dom"
-import api from "../api/api"
 import { useEffect, useState } from "react";
-import Produto from "../components/Produto";
-import Cabecalho from "../components/Cabecalho";
-import { ProdutoArea } from "../css/ProdutoArea";
+import Cabecalho from "../../components/cabecalho/Cabecalho";
+import api from "../../api/api";
+import CardProduto from "../../components/CardProduto";
+import { ProdutosStyle } from "../../css/ProdutosStyle";
 
 const Categoria = () => {
     const { nomeCategoria } = useParams()
@@ -45,9 +45,9 @@ const Categoria = () => {
         <>
             <Cabecalho />
             <h2>Categoria {nomeCategoria}</h2>
-            <ProdutoArea>
+            <ProdutosStyle>
                 {produtosDaCategoria.map((produto)=>
-                    <Produto
+                    <CardProduto
                         key={produto.id}
                         id={produto.id}
                         nome={produto.nome}
@@ -57,7 +57,7 @@ const Categoria = () => {
                         likes={produto.likes}
                     />
                 )}
-            </ProdutoArea>
+            </ProdutosStyle> 
         </>
     )
 }

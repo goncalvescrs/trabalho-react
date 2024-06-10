@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import Cabecalho from '../../components/cabecalho';
+import Cabecalho from "../../components/cabecalho/Cabecalho";
 import Rodape from '../../components/Rodape';
 import api from '../../api/api';
 import { useEffect, useState } from 'react';

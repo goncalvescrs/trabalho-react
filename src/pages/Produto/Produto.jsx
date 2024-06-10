@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import api from "../../api/api"
-import Cabecalho from "../../components/cabecalho";
+import Cabecalho from "../../components/cabecalho/Cabecalho";
 import { setItem, getItem } from "../../services/LocalStorageFuncs"
+import './produto.css'
 
 const ProdutoEspecifico = () => {
     const { id } = useParams()
@@ -46,8 +47,7 @@ const ProdutoEspecifico = () => {
         <>
             <Cabecalho />
 
-            <CardProduto>
-                <div>
+                <div className='produto'>
                     <img src={produto.imgUrl} alt={produto.descricao} />
                     <p>{produto.nome}</p>
                     <p>{produto.descricao}</p>
@@ -61,7 +61,7 @@ const ProdutoEspecifico = () => {
                         <a href='/carrinho'>Finalizar compra</a>
                     </button>
                 </div>
-            </CardProduto>
+            
         </>
     )
 }

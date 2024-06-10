@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { getItem, setItem } from "../../services/LocalStorageFuncs"
 import { CartArea, DivFinal } from "../../css/CartArea"
-import Cabecalho from "../../components/cabecalho"
+import Cabecalho from "../../components/cabecalho/Cabecalho";
 import Rodape from "../../components/Rodape"
 import { useHistory } from "react-router-dom"
 import api from "../../api/api"
