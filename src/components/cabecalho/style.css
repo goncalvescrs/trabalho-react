@@ -1,4 +1,8 @@
 header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
   background-color: #3498DB;
   padding: 20px;
   border-radius: 10px;
@@ -6,6 +10,11 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  z-index: 1; /* adicione essa propriedade para garantir que o header fique em cima do conteúdo */
+}
+
+body{
+  padding-top: 80px;
 }
 
 nav ul {
