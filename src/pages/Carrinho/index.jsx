@@ -18,7 +18,9 @@ const Carrinho = () => {
 
     useEffect(() => {
         setItem('carrinho', data);
+        console.log(data)
     }, [data]);
+
 
     const removeItem = (obj) => {
         const arrFilter = data.filter((e) => e.id !== obj.id)
@@ -26,22 +28,45 @@ const Carrinho = () => {
         setItem('carrinho', arrFilter)
     }
     
-    const subTotal = data.reduce((acc, cur) => acc + cur.preco, 0)
+    const aumentar = (obj) => {
+        const id = obj.id
+        const estoqueProduto = obj.quantidade
+        setData(data.map(e => {
+            if (e.id === id) {
+                if (e.qtdItens < estoqueProduto) {
+                    const novaQtdItens = e.qtdItens + 1
+                    const subTotalItem = novaQtdItens * e.preco
 
-    const aumentar = (id) => {
-        setData(data.map(e =>
-            e.id === id ? { ...e, qtdItens: e.qtdItens + 1 } : e
-        ));
-    };
+                    return { ...e, qtdItens: novaQtdItens, subTotalItem: subTotalItem }
+                } else {
+                    alert('Estoque máximo atingido!');
+                }
+            }
+            return e;
+        }))
+    }
 
     const diminuir = (id) => {
-        setData(data.map(e =>
-            e.id === id ? { ...e, qtdItens: Math.max(e.qtdItens - 1, 1) } : e
-        ));
+        setData(data.map(e => {
+            if (e.id === id) {
+                const novaQtdItens = Math.max(e.qtdItens - 1, 1)
+                const subTotalItem = novaQtdItens * e.preco
+                return { ...e, qtdItens: novaQtdItens, subTotalItem: subTotalItem }
+            }
+            return e;
+        }));
     };
+
+    const subTotal = data.reduce((acc, cur) => acc + (cur.subTotalItem || cur.preco), 0)
+    console.log('Subtotal total do carrinho:', subTotal)
 
     const finalizarCompra = async () => {
         const usuarioLogado = getItem('usuarioLogado');
+
+        // -------------DUVIDA---------------------
+        // const userId2 = usuarioLogado.id;
+        // console.log('id usuario:', userId2);
+        // ----------------------------------------
             
         if (!usuarioLogado) {
             alert('Você precisa estar logado para finalizar a compra.');
@@ -50,28 +75,53 @@ const Carrinho = () => {
         }
 
         const usuarioLogadoString = JSON.stringify(getItem('usuarioLogado'));
-        // console.log('Usuário logado como string:', usuarioLogadoString); 
-
-        // Encontre e extraia o valor do ID da string
         const userId = usuarioLogadoString.split('"id":"')[1].split('"')[0];
-        // console.log('ID do usuário:', userId); // so pra confirmar e ver no console
+        // console.log('id usuario:', userId); // checando
 
         const pedido = {
             valorTotal: subTotal,
             userId: userId,
             itens: data.map(e => ({ idProduto: e.id, quantidade: e.qtdItens }))
-        };
+        }
 
         try {
             const response = await api.post('/pedido', pedido);
-            console.log('Pedido criado com sucesso:', response.data);
-            // Limpar o carrinho após finalizar a compra
+            atualizarEstoque(data)
+            // console.log('Pedido criado com sucesso:', response.data); // checando
+
+            // limpar o carrinho depois de finalizar a compra
             setData([]);
-            history.push('/compra-realizada'); // Redirecionar para a página de confirmação de compra
+            history.push('/compra-realizada');
         } catch (error) {
             console.error('Erro ao criar pedido:', error);
         }
-    };
+    }
+
+    
+    const atualizarEstoque = async (data) => {
+        try {
+            const itensComprados = data.map((e) => ({ id: e.id, quantidade: e.qtdItens }));
+
+            // acessando os detalhes de cada produto do banco de dados e atualizando o estoque
+            for (const item of itensComprados) {
+                const response = await api.get(`/produto/${item.id}`);
+
+                if (response.data) {
+                    const produto = response.data;
+                    const estoqueAtualizado = produto.quantidade - item.quantidade;
+
+                    await api.put(`/produto/${item.id}`, {...produto, quantidade: estoqueAtualizado });
+                    console.log(`Estoque do produto ${item.id} atualizado para ${estoqueAtualizado}`);
+                } else {
+                    console.log(`Produto ${item.id} não encontrado na API`);
+                }
+            }
+
+            console.log('Atualização do estoque concluída');
+        } catch (error) {
+            console.error('Erro ao atualizar o estoque:', error);
+        }
+    }
 
     return (
         <>
@@ -102,7 +152,7 @@ const Carrinho = () => {
                                     value={e.qtdItens}
                                     readOnly
                                 />
-                                <input onClick={() => aumentar(e.id)} type="button" value="+" />
+                                <input onClick={() => aumentar(e)} type="button" value="+" />
                             </span>
                             <button onClick={() => removeItem(e)}>x</button>
                         </div>
