@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
-import api from "../api/api";
+import api from "../../api/api";
 
 const Login = () => {
   const history = useHistory();

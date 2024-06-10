@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import api from "../api/api";
-import Banner from "../components/Banner";
-import Cabecalho from "../components/Cabecalho";
-import Produto from "../components/Produto";
-import Rodape from "../components/Rodape";
-import { ProdutoArea } from "../css/ProdutoArea";
-import { setItem } from "../services/LocalStorageFuncs";
+import api from "../../api/api";
+import Banner from "../../components/Banner";
+import Cabecalho from "../../components/Cabecalho";
+import Produto from "../../components/Produto";
+import Rodape from "../../components/Rodape";
+import { ProdutoArea } from "../../css/ProdutoArea";
+import { setItem } from "../../services/LocalStorageFuncs";
 
 const Home = () => {
     const [produtos, setProdutos] = useState([])
