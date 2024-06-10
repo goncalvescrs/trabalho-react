@@ -1,20 +1,29 @@
-import { Link } from "react-router-dom";
-import "./style.css";
+import React from 'react';
 
-const Cabecalho = () => {
-    return (
-        <header className="cabecalho">
-            <nav>
-                <ul className="categorias">
-                    <li><Link to="/categoria/eletronicos">Eletrônicos</Link></li>
-                    <li><Link to="/categoria/roupas">Roupas</Link></li>
-                    <li><Link to="/categoria/livros">Livros</Link></li>
-                    <li><Link to="/categoria/alimentos">Alimentos</Link></li>
-                    {/* Adicione mais categorias conforme necessário */}
-                </ul>
-            </nav>
-        </header>
-    );
+const Header = () => {
+  return (
+    <header>
+      <nav>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Produtos</a></li>
+          <li><a href="#">Sobre</a></li>
+          <li><a href="#">Contato</a></li>
+        </ul>
+      </nav>
+      <div className="logo">
+        <img src="logo.png" alt="Logo da loja" />
+      </div>
+      <div className="search-bar">
+        <input type="search" placeholder="Pesquisar" />
+        <button type="submit">Pesquisar</button>
+      </div>
+      <div className="cart">
+        <img src="cart.png" alt="Carrinho de compras" />
+        <span>0 itens</span>
+      </div>
+    </header>
+  );
 };
 
-export default Cabecalho;
+export default Header;

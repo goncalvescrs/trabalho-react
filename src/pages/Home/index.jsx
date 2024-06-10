@@ -22,7 +22,7 @@ const Home = () => {
 
     return (
         <>
-            <Cabecalho /> {/* Corrigido: renderização do componente Cabecalho */}
+            <Cabecalho /> {}
 
             <div className="banner">
                 <Banner
