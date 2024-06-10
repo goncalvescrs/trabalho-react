@@ -1,8 +1,9 @@
 header {
   position: fixed;
   top: 0;
-  left: 0;
-  width: 100%;
+  left: 8px;
+  right: 5px;
+  width: 99%;
   background-color: #3498DB;
   padding: 20px;
   border-radius: 10px;
@@ -10,7 +11,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  z-index: 1; /* adicione essa propriedade para garantir que o header fique em cima do conteúdo */
+  z-index: 1;
 }
 
 body{
@@ -86,4 +87,75 @@ nav a:hover {
 
 .cart span {
   color: #FFC107;
+}
+
+.menu-hamburguer {
+  display: none;
+}
+
+.menu-hamburguer:checked ~ .nav-menu {
+  display: block;
+}
+
+.nav-menu {
+  display: none;
+  position: absolute;
+  top: 60px; /* ajuste essa altura de acordo com a altura do seu header */
+  left: 0;
+  width: 100%;
+  background-color: #3498DB;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.nav-menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-menu li {
+  margin-bottom: 10px;
+}
+
+.nav-menu a {
+  color: #FFFFFF;
+  text-decoration: none;
+}
+
+.nav-menu a:hover {
+  text-decoration: underline;
+}
+
+.hamburguer {
+  display: block;
+  width: 30px;
+  height: 30px;
+  background-color: #3498DB;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.hamburguer:hover {
+  background-color: #333;
+}
+
+.hamburguer::before {
+  content: "";
+  display: block;
+  width: 20px;
+  height: 2px;
+  background-color: #FFFFFF;
+  margin: 10px auto;
+}
+
+.hamburguer::after {
+  content: "";
+  display: block;
+  width: 20px;
+  height: 2px;
+  background-color: #FFFFFF;
+  margin: 10px auto;
 }

@@ -1,23 +1,39 @@
 import { Link } from "react-router-dom";
-import "./cabecalho.css"
+import "./cabecalho.css";
 
 const Cabecalho = () => {
   return (
     <header>
-      <nav>
+      <input type="checkbox" id="menu-hamburguer" className="menu-hamburguer" />
+      <label htmlFor="menu-hamburguer" className="hamburguer"></label>
+      <nav className="nav-menu">
         <ul>
-          <li><Link to='/'>Home</Link></li>
-          <li><Link to={'/categoria/eletronico'}>Eletronico</Link></li>
-          <li><Link to={'/categoria/teclado'}>Teclado</Link></li>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to={"/categoria/eletronico"}>Eletronico</Link>
+          </li>
+          <li>
+            <Link to={"/categoria/teclado"}>Teclado</Link>
+          </li>
         </ul>
         <ul>
-          <li><Link to='/Login'> Login |</Link></li>
-          <li><Link to='/cadastro'> Cadastro |</Link></li>
-          <li><Link to='/carrinho'> Carrinho</Link></li>
+          <li>
+            <Link to="/Login"> Login |</Link>
+          </li>
+          <li>
+            <Link to="/cadastro"> Cadastro |</Link>
+          </li>
+          <li>
+            <Link to="/carrinho"> Carrinho</Link>
+          </li>
         </ul>
       </nav>
       <div className="logo">
-        <img src="logo.png" alt="Logo da loja" />
+        <Link to="/">
+          <img src="logo.png" alt="Logo da loja" />
+        </Link>
       </div>
       <div className="search-bar">
         <input type="search" placeholder="Pesquisar" />
