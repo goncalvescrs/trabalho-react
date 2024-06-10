@@ -1,16 +1,19 @@
 html {
-    height: 100%;
-  }
-  
-  body {
-    min-height: 100vh;
-    max-width: 100%;
-    margin: 0 auto; 
-    padding: 0;
-    padding-top: 500px; /* add this line */
-    box-sizing: border-box;
-  }
-  
+  height: 100%;
+}
+
+body {
+  font-family: Nunito, sans-serif;
+  min-height: 100vh;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0;
+  padding-top: 500px;
+  box-sizing: border-box;
+  background: linear-gradient(to bottom, #21d4fd, #b721ff);
+  background-size: 100% 100vh;
+  background-attachment: fixed;
+}
   header {
     background-color: rgb(33, 150, 243);
     padding: 10px 0;

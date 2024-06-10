@@ -1,5 +1,5 @@
 header {
-  background-color: #333;
+  background-color: #3498DB;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
@@ -21,7 +21,7 @@ nav li {
 }
 
 nav a {
-  color: #21d4fd;
+  color: #FFC107;
   text-decoration: none;
 }
 
@@ -50,13 +50,13 @@ nav a:hover {
   padding: 10px;
   border: none;
   border-radius: 5px;
-  background-color: #444;
-  color: #fff;
+  background-color: #F7F7F7;
+  color: #666666;
 }
 
 .search-bar button[type="submit"] {
-  background-color: #21d4fd;
-  color: #fff;
+  background-color: #3498DB;
+  color: #FFFFFF;
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
@@ -76,5 +76,5 @@ nav a:hover {
 }
 
 .cart span {
-  color: #21d4fd;
+  color: #FFC107;
 }
