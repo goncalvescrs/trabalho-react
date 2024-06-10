@@ -1,6 +1,4 @@
-// Importe useEffect e useState
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import api from "../../api/api";
 import Banner from "../../components/Banner";
 import Cabecalho from "../../components/cabecalho/Cabecalho";
@@ -24,7 +22,7 @@ const Home = () => {
     return (
         <>
             <Cabecalho /> {}
-
+        <div className="teste">
             <div className="banner">
                 <Banner
                     img={'https://tpc.googlesyndication.com/simgad/15464926730141309314?'}
@@ -52,7 +50,7 @@ const Home = () => {
                     descrcao={"descricao do banner"}
                 />
             </div>
-
+        </div> 
             <Rodape />
         </>
     );

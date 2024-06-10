@@ -33,10 +33,10 @@ const Cadastro = () => {
   };
 
   return (
-    <div className="container-login">
-      <div className="wrap-login">
+    <div className="container-cadastro">
+      <div className="wrap-cadastro">
         <form onSubmit={handleSubmit}>
-          <h2 className="login-form-title">Cadastro</h2>
+          <h2 className="cadastro-form-title">Cadastro</h2>
           <div className="wrap-input">
             <input
             required
@@ -73,13 +73,13 @@ const Cadastro = () => {
             />
             <span className="focus-input" data-placeholder="Senha"></span>
           </div>
-          <div className="container-login-form-btn">
-            <button type="submit" className="login-form-btn">
+          <div className="container-cadastro-form-btn">
+            <button type="submit" className="cadastro-form-btn">
               Cadastrar
             </button>
           </div>
-          <div className="container-login-form-btn">
-            <button type="submit" className="login-form-btn" onClick={()=> history.push("/Login")}>
+          <div className="container-cadastro-form-btn">
+            <button type="submit" className="cadastro-form-btn" onClick={()=> history.push("/Login")}>
               Voltar
             </button>
           </div>
