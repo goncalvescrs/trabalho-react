@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
-import Cabecalho from '../components/Cabecalho';
-import Rodape from '../components/Rodape';
-import api from '../api/api';
+import Cabecalho from '../../components/cabecalho';
+import Rodape from '../../components/Rodape';
+import api from '../../api/api';
 import { useEffect, useState } from 'react';
-import { getItem } from '../services/LocalStorageFuncs';
+import { getItem } from '../../services/LocalStorageFuncs';
 
 const CompraRealizada = () => {
   const [pedidos, setPedidos] = useState([]);

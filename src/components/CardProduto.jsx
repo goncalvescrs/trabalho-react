@@ -1,7 +1,7 @@
 import { LiaShippingFastSolid } from 'react-icons/lia';
 import { CiHeart } from "react-icons/ci";
 
-const Produto = ({ id, nome, imgUrl, descricao, preco, likes }) => {
+const CardProduto = ({ id, nome, imgUrl, descricao, preco, likes }) => {
     
 
     return (
@@ -20,4 +20,4 @@ const Produto = ({ id, nome, imgUrl, descricao, preco, likes }) => {
         </>
     )
 }
-export default Produto
+export default CardProduto
