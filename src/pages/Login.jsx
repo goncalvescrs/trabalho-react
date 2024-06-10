@@ -1,75 +1,97 @@
-
-import { useState } from "react"
-import { useHistory } from "react-router-dom"
-import api from "../api/api"
-import { getItem, setItem } from "../services/LocalStorageFuncs"
+import { useState } from "react";
+import { Link, useHistory } from "react-router-dom";
+import api from "../api/api";
 
 const Login = () => {
-    const [login, setLogin] = useState({email: '', senha:''})
-    const history = useHistory()
+  const history = useHistory();
 
-const handleChange = (e) => {
+  const [login, setLogin] = useState({ email: "", senha: "" });
+
+  const handleChange = (e) => {
     setLogin({ ...login, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    var email = "";
+    var senha = "";
+    try {
+      const { data } = await api.get("/users");
+      for (let i = 0; i < data.length; i++) {
+        console.log(data[i].email);
+        if (login.email == data[i].email && login.senha == data[i].senha) {
+          email = data[i].email;
+          senha = data[i].senha;
+        }
+      }
+      if (email != "" && senha != "") {
+        history.push("/");
+      } else alert("Login não encontrado!");
+
+    } catch (error) {
+      console.error("Erro ao realizar login", error);
+    }
+  };
+
+  const handleZerar = () => {
+    setLogin({ email: "", senha: "" });
+  };
+
+  const inputFocus = (title) => {
+    return <span className="focus-input" data-placeholder={title}></span>;
+  };
+
+  return (
+    <div className="container-login">
+      <div className="wrap-login">
+        <form onSubmit={handleSubmit} onReset={handleZerar}>
+          <h2 className="login-form-title">
+            <img src="" alt="" />
+            Entre com seu Login
+          </h2>
+          <div className="wrap-input">
+            <input
+              required
+              type="email"
+              name="email"
+              onChange={handleChange}
+              className="input"
+              value={login.email}
+            />
+            {inputFocus("E-mail")}
+          </div>
+          <div className="wrap-input">
+            <input
+              required
+              type="password"
+              name="senha"
+              onChange={handleChange}
+              className="input"
+              value={login.senha}
+            />
+            {inputFocus("Senha")}
+          </div>
+          <div className="text-center">
+            <a href="#" className="txt2">
+              Esqueceu a senha?
+            </a>
+
+            <span className="txt1">
+              Não tem conta?
+              <Link to="/Cadastro" className="txt2">
+                Registrar
+              </Link>
+            </span>
+          </div>
+          <div className="container-login-form-btn">
+            <button type="submit" className="login-form-btn">
+              Entrar
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
 };
 
-const handleSubmit = async (e) => {
-    e.preventDefault()
-        try {
-            const response = await api.get('/users')
-
-            const user = response.data.filter(data => data.email === login.email && data.senha === login.senha)
-
-            if (user.length > 0) {
-                alert('Login realizado com sucesso!')
-                setItem('usuarioLogado', user); // Salva o usuário logado no localStorage
-
-                const carrinho = getItem('carrinho') || [];
-                if (carrinho.length === 0) {
-                    history.push('/')
-                } else {
-                    history.push('/carrinho')
-                }
-            } else {
-                alert('Usuário ou senha inválidos')
-                handleZerar()
-            }
-
-        } catch (error) {
-            console.error('Erro ao realizar login', error)
-        }
-    }
-    
-    const handleZerar = () => {
-        setLogin({
-        email: '',
-        senha: ''
-    })
-    }
-    return (
-        <>
-            <div className="login-form">
-                <form onSubmit={handleSubmit}>
-                    <h2 className="form-title">Acesse o sistema</h2>
-                    <input className="form-input" required value={login.email} type="email" name="email" 
-                    placeholder="E-mail" onChange={handleChange}/>
-                    <p/>
-                    <input className="form-input" required value={login.senha} type="password" name="senha" 
-                    placeholder="Senha" onChange={handleChange}/>
-                    <p/>
-                    <label>
-                        <input type="checkbox"/>
-                        Lembre de mim
-                    </label>
-                    <p/>
-                    <a href="#">Esqueceu a senha?</a>
-                    <p/>
-                    <button type="submit">Entrar</button>
-                    <p/>
-                    <p>Não tem conta? <a href="/cadastro">Registrar</a></p>
-                </form>
-            </div>
-        </>
-    )
-}
-
-export default Login
+export default Login;

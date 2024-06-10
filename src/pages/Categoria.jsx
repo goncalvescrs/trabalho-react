@@ -2,7 +2,10 @@
 const Categoria = () => {
     return (
         <>
-            Categoria
+            <h2>Ainda não sei o que é</h2>
+            <section className="cards">
+
+            </section>
         </>
     )
 }

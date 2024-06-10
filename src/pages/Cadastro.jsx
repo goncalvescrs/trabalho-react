@@ -2,24 +2,13 @@ import { useState } from "react";
 import api from "../api/api";
 import { useHistory } from "react-router-dom";
 
+
 const Cadastro = () => {
   const history = useHistory();
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  const handleNameChange = (e) => {
-    setName(e.target.value);
-  };
-
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
-  };
-
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -36,7 +25,7 @@ const Cadastro = () => {
       setPassword("");
 
       if (response.status === 201) {
-        history.push("/Login"); // Redirecionar para a página de login após cadastro
+        history.push("/Login");
       }
     } catch (error) {
       console.error("Erro ao cadastrar usuário:", error);
@@ -44,43 +33,59 @@ const Cadastro = () => {
   };
 
   return (
-    <>
-      <div className="login-form">
-        <h2>Cadastro</h2>
+    <div className="container-login">
+      <div className="wrap-login">
         <form onSubmit={handleSubmit}>
-          <label htmlFor="name">Nome:</label>
-          <br />
-          <input
-            id="name"
-            type="text"
-            value={name}
-            onChange={handleNameChange}
-          />
-          <p />
-          <label htmlFor="email">Email:</label>
-          <br />
-          <input
-            id="email"
-            type="email"
-            value={email}
-            onChange={handleEmailChange}
-          />
-          <p />
-          <label htmlFor="password">Senha:</label>
-          <br />
-          <input
-            id="password"
-            type="password"
-            value={password}
-            onChange={handlePasswordChange}
-          />
-          <p />
+          <h2 className="login-form-title">Cadastro</h2>
+          <div className="wrap-input">
+            <input
+            required
+              id="name"
+              type="text"
+              name="nome"
+              onChange={(e)=>setName(e.target.value)}
+              className="input"
+              value={name}
+            />
+            <span className="focus-input" data-placeholder="Nome"></span>
+          </div>
+          <div className="wrap-input">
+            <input
+            required
+              id="email"
+              type="email"
+              name="email"
+              onChange={(e)=> setEmail(e.target.value)}
+              className="input"
+              value={email}
+            />
+            <span className="focus-input" data-placeholder="Email"></span>
+          </div>
+          <div className="wrap-input">
+            <input
+            required
+              id="password"
+              type="password"
+              name="senha"
+              onChange={(e)=>setPassword(e.target.value)}
+              className="input"
+              value={password}
+            />
+            <span className="focus-input" data-placeholder="Senha"></span>
+          </div>
           <div className="container-login-form-btn">
-            <button className="login-form-btn">Cadastrar</button>
+            <button type="submit" className="login-form-btn">
+              Cadastrar
+            </button>
+          </div>
+          <div className="container-login-form-btn">
+            <button type="submit" className="login-form-btn" onClick={()=> history.push("/Login")}>
+              Voltar
+            </button>
           </div>
         </form>
       </div>
-    </>
+    </div>
   );
 };
 
