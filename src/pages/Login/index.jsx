@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
-import api from "../api/api";
+import api from "../../api/api";
+import "./style.css"
 
 const Login = () => {
   const history = useHistory();
@@ -15,8 +16,10 @@ const Login = () => {
     e.preventDefault();
     var email = "";
     var senha = "";
+    
     try {
       const { data } = await api.get("/users");
+
       for (let i = 0; i < data.length; i++) {
         console.log(data[i].email);
         if (login.email == data[i].email && login.senha == data[i].senha) {
@@ -24,6 +27,7 @@ const Login = () => {
           senha = data[i].senha;
         }
       }
+
       if (email != "" && senha != "") {
         history.push("/");
       } else alert("Login não encontrado!");

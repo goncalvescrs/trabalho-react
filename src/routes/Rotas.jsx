@@ -3,8 +3,7 @@ import Carrinho from '../pages/Carrinho'
 import Categoria from '../pages/Categoria'
 import CompraRealizada from '../pages/CompraRealizada'
 import Home from '../pages/Home'
-import ProdutoEspecifico from '../pages/ProdutoEspecifico'
-
+import ProdutoEspecifico from '../pages/Produto'
 import Cadastro from '../pages/Cadastro'
 import Login from '../pages/Login'
 
