@@ -39,12 +39,12 @@ const Categoria = () => {
 
     // filtra os produtos pela categoria que vem dos parametros da URL
     const produtosDaCategoria = produtos.filter((produto) => produto.categoria === nomeCategoria);
-    console.log('Produtos da categoria:', produtosDaCategoria); // ver se esta correta a filtragem 
+    console.log('Produtos da categoria:', produtosDaCategoria); 
 
     return (
         <>
             <Cabecalho />
-            <h2>Categoria {nomeCategoria}</h2>
+            <h2 className="nomeCateg">Categoria {nomeCategoria}</h2>
             <ProdutosStyle>
                 {produtosDaCategoria.map((produto)=>
                     <CardProduto

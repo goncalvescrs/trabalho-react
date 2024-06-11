@@ -41,7 +41,13 @@ export const ProdutosStyle = styled.div`
         
         }
 
-        h2 {
+        nomeCateg {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h2 {    
             font-size: 15px;
             font-weight: 200;
         }
