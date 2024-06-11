@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import api from "../../api/api";
 import Banner from "../../components/Banner";
 import Cabecalho from "../../components/cabecalho/Cabecalho";
-import Rodape from "../../components/Rodape";
 import "./home.css";
 import CardProduto from "../../components/CardProduto/CardProduto";
 import { ProdutosStyle } from "../../css/ProdutosStyle";
@@ -51,7 +50,6 @@ const Home = () => {
                 />
             </div>
         </div> 
-            <Rodape />
         </>
     );
 };

@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import Cabecalho from "../../components/cabecalho/Cabecalho";
-import Rodape from '../../components/Rodape';
+import Rodape from '../../components/Footer/Footer';
 import api from '../../api/api';
 import { useEffect, useState } from 'react';
 import { getItem } from '../../services/LocalStorageFuncs';
