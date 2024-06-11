@@ -1,7 +1,11 @@
+import { getItem } from "../../services/LocalStorageFuncs";
 import { Link } from "react-router-dom";
 import "./cabecalho.css";
+import { TiShoppingCart } from "react-icons/ti";
 
 const Cabecalho = () => {
+  const carrinho = getItem('carrinho')
+
   return (
     <header>
       <input type="checkbox" id="menu-hamburguer" className="menu-hamburguer" />
@@ -35,13 +39,12 @@ const Cabecalho = () => {
           <img src="logo.png" alt="Logo da loja" />
         </Link>
       </div>
-      <div className="search-bar">
-        <input type="search" placeholder="Pesquisar" />
-        <button type="submit">Pesquisar</button>
-      </div>
       <div className="cart">
-        <img src="cart.png" alt="Carrinho de compras" />
-        <span>0 itens</span>
+      <Link to={"/carrinho"}>
+      <TiShoppingCart />
+      </Link>
+        {/* <img src="cart.png" alt="Carrinho de compras" /> */}
+        <span>{carrinho.length}</span>
       </div>
     </header>
   );
