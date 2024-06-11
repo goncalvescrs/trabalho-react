@@ -1,69 +1,70 @@
-import { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
-import api from "../../api/api"
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import api from "../../api/api";
 import Cabecalho from "../../components/cabecalho/Cabecalho";
-import { setItem, getItem } from "../../services/LocalStorageFuncs"
-import './produto.css'
+import { setItem, getItem } from "../../services/LocalStorageFuncs";
+import "./produto.css";
 
 const ProdutoEspecifico = () => {
-    const { id } = useParams()
-    const [produto, setProduto] = useState({})
-    const [cart, setCart] = useState([])
+  const { id } = useParams();
+  const [produto, setProduto] = useState({});
+  const [cart, setCart] = useState([]);
 
-    useEffect(() => {
-        const storedCart = getItem('carrinho');
-        if (storedCart) {
-        setCart(storedCart);
-        }
-        getProduto()
-    }, [])
-
-    const getProduto = async () => {
-        const response = await api.get(`/produto/${id}`)
-        setProduto(response.data)
-
+  useEffect(() => {
+    const storedCart = getItem("carrinho");
+    if (storedCart) {
+      setCart(storedCart);
     }
+    getProduto();
+  }, []);
 
-    const handleLikeClick = async () => {
-        const response = await api.patch(`/produto/${id}`, {
-            likes: produto.likes + 1
+  const getProduto = async () => {
+    const response = await api.get(`/produto/${id}`);
+    setProduto(response.data);
+  };
 
-        })
-        window.location.reload()
+  const handleLikeClick = async () => {
+    const response = await api.patch(`/produto/${id}`, {
+      likes: produto.likes + 1,
+    });
+    window.location.reload();
+  };
+
+  const handleClickCarrinho = (obj) => {
+    const element = cart.find((e) => e.id == obj.id);
+
+    if (!element) {
+      const updatedCart = [...cart, obj];
+      setCart(updatedCart);
+      setItem("carrinho", updatedCart);
     }
+  };
 
-    const handleClickCarrinho = (obj) => {
-        const element = cart.find((e) => e.id == obj.id)
-        
-        if (!element) {
-            const updatedCart = [...cart, obj];
-            setCart(updatedCart)
-            setItem('carrinho', updatedCart)
-        }
-    }
+  return (
+    <>
+      <Cabecalho />
 
+      <div className="produto">
+        <img src={produto.imgUrl} alt={produto.descricao} />
+        <div className="info">
+          <p>{produto.nome}</p>
+          <p>{produto.descricao}</p>
+          <h5>R$ {produto.preco}</h5>
+          <h6>{produto.categoria}</h6>
+          <h6>Estoque: {produto.quantidade}</h6>
+          <button className="likes" onClick={handleLikeClick}>
+            ❤️ Curtir ({produto.likes})
+          </button>
+          <button onClick={() => handleClickCarrinho(produto)}>
+            Adicionar ao Carrinho
+          </button>
+          <button onClick={() => handleClickCarrinho(produto)}>
+            <a href="/carrinho">Finalizar compra</a>
+          </button>
+        </div>
+      </div>
+    </>
+  );
+};
 
-    return (
-        <>
-            <Cabecalho />
-
-                <div className='produto'>
-                    <img src={produto.imgUrl} alt={produto.descricao} />
-                    <p>{produto.nome}</p>
-                    <p>{produto.descricao}</p>
-                    <h5>R$ {produto.preco}</h5>
-                    <h6>{produto.categoria}</h6>
-                    <h6>Estoque: {produto.quantidade}</h6>
-                    <button className='likes' onClick={handleLikeClick}>❤️ Curtir ({produto.likes})</button>
-                    <button onClick={() => handleClickCarrinho(produto)}>Adicionar ao Carrinho</button>
-                    
-                    <button onClick={() => handleClickCarrinho(produto)}>
-                        <a href='/carrinho'>Finalizar compra</a>
-                    </button>
-                </div>
-            
-        </>
-    )
-}
-
-export default ProdutoEspecifico
+export default ProdutoEspecifico;

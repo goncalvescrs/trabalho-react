@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react";
 import Cabecalho from "../../components/cabecalho/Cabecalho";
 import api from "../../api/api";
-import CardProduto from "../../components/CardProduto";
+import CardProduto from "../../components/CardProduto/CardProduto";
 import { ProdutosStyle } from "../../css/ProdutosStyle";
 
 const Categoria = () => {
