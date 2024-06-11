@@ -1,3 +1,4 @@
+import Footer from "./components/Footer/Footer";
 import Routes from "./routes/Routes";
 
 function App() {
@@ -6,6 +7,7 @@ function App() {
     <>
       <div className="App">
         <Routes />
+        <Footer />
       </div>
     </>
   );
