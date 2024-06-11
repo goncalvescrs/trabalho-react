@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const CartArea = styled.div`
     div {
-        height:200px;
         width: 1000px;
         border: 1px solid rgb(232, 232, 232);
         border-radius: 10px;
@@ -34,7 +33,6 @@ export const CartArea = styled.div`
 
 `
 export const DivFinal = styled.div`
-        height:180px;
         width: 500px;
         border: 1px solid rgb(232, 232, 232);
         border-radius: 10px;

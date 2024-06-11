@@ -10,11 +10,7 @@ export const ProdutosStyle = styled.div`
     color: #1d1d1d ;
 
     div {
-        height:350px;
         width: 220px;
-        border: 1px solid rgb(232, 232, 232);
-        border-radius: 10px;
-        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
         display: flex;
         justify-content: space-between;
         flex-direction: column;
@@ -37,11 +33,6 @@ export const ProdutosStyle = styled.div`
                 box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.283); 
                 border-radius: 10px;
             }
-        }
-
-        img {
-            max-width: 50%; 
-            // height: auto;   
         }
 
         p {
