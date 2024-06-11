@@ -23,7 +23,7 @@ const Cadastro = () => {
       setName("");
       setEmail("");
       setPassword("");
-
+      alert('Usuário cadastrado com sucesso!')
       if (response.status === 201) {
         history.push("/Login");
       }

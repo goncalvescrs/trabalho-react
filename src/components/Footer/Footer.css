@@ -1,12 +1,13 @@
 .footer {
+    position: relative; 
+    bottom: 0;
     background-color: #282c34;
     color: white;
     text-align: center;
-    padding: 1rem 0;
-    position: relative; /* Mudado de fixed para relative */
-    margin-top: auto; /* Adicionado */
-    width: 100%;
-    max-width: 1600px;   /* Limita a largura máxima para uma melhor aparência */
+
+    padding: 5rem ;
+    /* margin-top: auto;  */
+
     box-sizing: border-box;
     justify-content: center;
     align-items: center;

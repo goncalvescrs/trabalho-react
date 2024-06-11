@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import api from "../../api/api";
 import Banner from "../../components/Banner";
 import Cabecalho from "../../components/cabecalho/Cabecalho";
+import Footer from "../../components/Footer/Footer";
 import "./home.css";
 import CardProduto from "../../components/CardProduto/CardProduto";
-import { ProdutosStyle } from "../../css/ProdutosStyle";
 
 const Home = () => {
     const [produtos, setProdutos] = useState([]);
@@ -20,36 +20,39 @@ const Home = () => {
 
     return (
         <>
-            <Cabecalho /> {}
-        <div className="teste">
-            <div className="banner">
-                <Banner
-                    img={'https://tpc.googlesyndication.com/simgad/15464926730141309314?'}
-                    descrcao={"descricao do banner"}
-                />
-            </div>
-            
-            <ProdutosStyle>
-                {produtos.map((produto) => (
-                    <CardProduto
-                        key={produto.id}
-                        id={produto.id}
-                        nome={produto.nome}
-                        imgUrl={produto.imgUrl}
-                        descricao={produto.descricao}
-                        preco={produto.preco}
-                        likes={produto.likes}
+            <Cabecalho />
+            <div className="teste">
+                <div className="banner">
+                    <Banner
+                        img={'https://tpc.googlesyndication.com/simgad/15464926730141309314?'}
+                        descrcao={"descricao do banner"}
                     />
-                ))}
-            </ProdutosStyle>
+                </div>
+                
+                <div className="style-produto">
+                    {produtos
+                        .filter(produto => produto.quantidade > 0)
+                        .map((produto) => (
+                        <CardProduto
+                            key={produto.id}
+                            id={produto.id}
+                            nome={produto.nome}
+                            imgUrl={produto.imgUrl}
+                            descricao={produto.descricao}
+                            preco={produto.preco}
+                            likes={produto.likes}
+                        />
+                    ))}
+                </div>
 
-            <div className="banner">
-                <Banner
-                    img={'https://tpc.googlesyndication.com/simgad/10894917116371607010?'}
-                    descrcao={"descricao do banner"}
-                />
-            </div>
-        </div> 
+                <div className="banner">
+                    <Banner
+                        img={'https://tpc.googlesyndication.com/simgad/10894917116371607010?'}
+                        descrcao={"descricao do banner"}
+                    />
+                </div>
+            </div> 
+            <Footer/>
         </>
     );
 };

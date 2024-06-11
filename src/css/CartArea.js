@@ -4,6 +4,9 @@ export const CartArea = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 20px;
+   max-width:1300px;
+   margin: 0 auto;
 
   div {
     width: 1000px;
@@ -13,13 +16,13 @@ export const CartArea = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0px 40px;
+    padding: 30px 40px;
     margin: 20px 0 0 0;
     background-color: #ffff;
 
     img {
-      max-height: 80%; 
-      // height: auto;   
+      max-width: 200px;
+      max-height: 200px;  
     }
     
     button {
@@ -45,7 +48,7 @@ export const DivFinal = styled.div`
   border-radius: 10px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
   padding: 50px;
-  margin: 20px 0 0 0;
+  margin: 20px 0;
   background-color: #ffff;
 }
   

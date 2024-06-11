@@ -22,7 +22,7 @@ const Login = () => {
                 setItem('usuarioLogado', user); // Salva o usuário logado no localStorage
 
                 const carrinho = getItem('carrinho') || [];
-                if (carrinho.length === 0) {
+                if (!carrinho || carrinho.length === 0) {
                     history.push('/')
                 } else {
                     history.push('/carrinho')
@@ -81,11 +81,12 @@ const Login = () => {
             </a>
 
             <span className="txt1">
-              Não tem conta?
+              Não tem conta? 
               <Link to="/Cadastro" className="txt2">
-                Registrar
+                 Registrar
               </Link>
             </span>
+            <br />
           </div>
           <div className="container-login-form-btn">
             <button type="submit" className="login-form-btn">

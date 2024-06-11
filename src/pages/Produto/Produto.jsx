@@ -4,6 +4,10 @@ import api from "../../api/api";
 import Cabecalho from "../../components/cabecalho/Cabecalho";
 import { setItem, getItem } from "../../services/LocalStorageFuncs";
 import "./produto.css";
+import Footer from "../../components/Footer/Footer";
+import { FaHeart } from "react-icons/fa";
+
+
 
 const ProdutoEspecifico = () => {
   const { id } = useParams();
@@ -53,16 +57,18 @@ const ProdutoEspecifico = () => {
           <h6>{produto.categoria}</h6>
           <h6>Estoque: {produto.quantidade}</h6>
           <button className="likes" onClick={handleLikeClick}>
-            ❤️ Curtir ({produto.likes})
-          </button>
+            <FaHeart/> Curtir ({produto.likes})
+          </button><br />
           <button onClick={() => handleClickCarrinho(produto)}>
-            Adicionar ao Carrinho
+                   Adicionar ao Carrinho
           </button>
           <button onClick={() => handleClickCarrinho(produto)}>
             <a href="/carrinho">Finalizar compra</a>
           </button>
         </div>
       </div>
+
+      <Footer />
     </>
   );
 };

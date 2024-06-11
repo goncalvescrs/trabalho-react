@@ -5,6 +5,7 @@ import Cabecalho from "../../components/cabecalho/Cabecalho";
 import Rodape from '../../components/Footer/Footer';
 import { useHistory } from "react-router-dom"
 import api from "../../api/api"
+import './carrinho.css'
 
 const Carrinho = () => {
     const history = useHistory();
@@ -126,12 +127,13 @@ const Carrinho = () => {
     return (
         <>
             <Cabecalho />
-            <h1>Carrinho</h1>
+
             <CartArea>
                 {data.length === 0 ? (
-                    <>
+                    <><br /><br /><br />
                         <p>O carrinho está vazio.</p>
                         <a href='/'><h2>Voltar a pagina principal</h2></a>
+                        <br /><br /><br />
                     </>
                 ) : (
                     data.map((e) => (
@@ -141,18 +143,18 @@ const Carrinho = () => {
                             <h5>R$ {e.preco}</h5>
                             <span>
                                 <label htmlFor={`quantidade-${e.id}`}>Quantidade: </label>
-                                <input onClick={() => diminuir(e.id)} type="button" value="-" />
+                                <input onClick={() => diminuir(e.id)} type="button" value=" - " />
                                 <input
                                     id={`quantidade-${e.id}`}
                                     name="quantidade"
                                     className="text"
-                                    size="1"
+                                    size="2"
                                     type="text"
                                     maxLength="5"
                                     value={e.qtdItens}
                                     readOnly
                                 />
-                                <input onClick={() => aumentar(e)} type="button" value="+" />
+                                <input onClick={() => aumentar(e)} type="button" value=" + " />
                             </span>
                             <button onClick={() => removeItem(e)}>x</button>
                         </div>

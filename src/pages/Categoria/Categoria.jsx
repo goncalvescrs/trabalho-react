@@ -3,7 +3,9 @@ import { useEffect, useState } from "react";
 import Cabecalho from "../../components/cabecalho/Cabecalho";
 import api from "../../api/api";
 import CardProduto from "../../components/CardProduto/CardProduto";
-import { ProdutosStyle } from "../../css/ProdutosStyle";
+import Footer from "../../components/Footer/Footer";
+import Banner from "../../components/Banner";
+import './categoria.css'
 
 const Categoria = () => {
     const { nomeCategoria } = useParams()
@@ -44,9 +46,12 @@ const Categoria = () => {
     return (
         <>
             <Cabecalho />
-            <h2 className="nomeCateg">Categoria {nomeCategoria}</h2>
-            <ProdutosStyle>
-                {produtosDaCategoria.map((produto)=>
+            <h2 className="nome-categoria">Categoria {nomeCategoria}</h2>
+
+            <div className="style-produto">
+                {produtosDaCategoria
+                    .filter(produto => produto.quantidade > 0)
+                    .map((produto) =>
                     <CardProduto
                         key={produto.id}
                         id={produto.id}
@@ -57,7 +62,16 @@ const Categoria = () => {
                         likes={produto.likes}
                     />
                 )}
-            </ProdutosStyle> 
+            </div>
+
+            <div className="banner">
+                <Banner
+                    img={'https://tpc.googlesyndication.com/simgad/10894917116371607010?'}
+                    descrcao={"descricao do banner"}
+                />
+            </div>
+
+            <Footer />
         </>
     )
 }

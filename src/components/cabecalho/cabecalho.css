@@ -1,96 +1,56 @@
+/* Certifique-se de que o CSS global tenha o seguinte: */
+/* body, html {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+} */
+
 header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0; /* Adicionado */
-  margin: auto; /* Adicionado */
   width: 100%;
-  background-color: #3498DB;
-  padding: 20px;
-  border-radius: 10px;
+  background-color: #1ec7dd;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  padding: 10px 0; /* Espaçamento vertical */
+}
+
+.container {
+  max-width: 1300px;
+  margin: 0 auto;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  z-index: 1;
+  justify-content: space-between; /* Distribui os itens com espaço entre eles */
+  align-items: center; /* Centraliza verticalmente os itens */
 }
 
-.logo {
-  margin-right: 20px;
-}
-
-.categorias {
-  display: flex;
-  flex-grow: 1;
-  justify-content: center;
-}
-
-.categorias ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: space-between;
-}
-
-.categorias li {
-  margin-right: 20px;
-}
-
-.categorias a {
-  color: #fff;
+.logo a {
+  font-size: 24px;
+  font-weight: bold;
   text-decoration: none;
+  color: #333;
 }
 
-.categorias a:hover {
-  color: #ccc;
-}
-
-.loginCadastro {
-  display: flex;
-  flex-grow: 1;
-  align-items: center;
-  margin-left: 20px;
-}
-
-.loginCadastro ul {
+.categorias ul, .loginCadastro ul {
   list-style: none;
-  margin: 0;
   padding: 0;
+  margin: 0;
   display: flex;
-  justify-content: space-between;
+  
 }
 
-.loginCadastro li {
+.categorias li, .loginCadastro li {
   margin-right: 20px;
 }
 
-.loginCadastro a {
-  color: #fff;
+.categorias a, .loginCadastro a {
   text-decoration: none;
-}
-
-.loginCadastro a:hover {
-  color: #ccc;
+  color: #fff;
 }
 
 .cart {
   display: flex;
-  flex-grow: 1;
   align-items: center;
-  margin-left: 20px;
 }
 
 .cart a {
-  color: #fff;
   text-decoration: none;
-}
-
-.cart a:hover {
-  color: #ccc;
-}
-
-.cart span {
-  font-size: 18px;
-  margin-left: 10px;
+  color: #fff;
+  margin-right: 10px;
 }
