@@ -161,9 +161,11 @@ const Carrinho = () => {
             </CartArea>
             {data.length > 0 && (
                 <DivFinal>
-                    <h3>{`SubTotal: R$ ${subTotal.toFixed(2)}`}</h3>
-                    <br />
-                    <button onClick={finalizarCompra}>Finalizar Compra</button>
+                    <div>
+                        <h3>{`SubTotal: R$ ${subTotal.toFixed(2)}`}</h3>
+                        <br />
+                        <button onClick={finalizarCompra}>Finalizar Compra</button>
+                    </div>
                 </DivFinal>
             )}
             <Rodape />

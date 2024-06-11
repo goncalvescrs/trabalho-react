@@ -28,29 +28,6 @@ footer {
   bottom: 0;
 }
 
-.teste{
-  height: 125vh;
-}
-
-.banner {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 200px;
-  margin: 20px 0;
-}
-
-.banner img {
-  max-width: 100%;
-  max-height: 100%;
-}
-
-.container {
-  max-width: 100%;
-  margin: 0 auto;
-  padding: 20px;
-}
-
 .ProdutoArea {
   max-width: 1200px;
   margin: 0 auto;

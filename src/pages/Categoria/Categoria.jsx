@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react";
 import Cabecalho from "../../components/cabecalho/Cabecalho";
 import api from "../../api/api";
-import CardProduto from "../../components/CardProduto";
+import CardProduto from "../../components/CardProduto/CardProduto";
 import { ProdutosStyle } from "../../css/ProdutosStyle";
 
 const Categoria = () => {
@@ -39,12 +39,12 @@ const Categoria = () => {
 
     // filtra os produtos pela categoria que vem dos parametros da URL
     const produtosDaCategoria = produtos.filter((produto) => produto.categoria === nomeCategoria);
-    console.log('Produtos da categoria:', produtosDaCategoria); // ver se esta correta a filtragem 
+    console.log('Produtos da categoria:', produtosDaCategoria); 
 
     return (
         <>
             <Cabecalho />
-            <h2>Categoria {nomeCategoria}</h2>
+            <h2 className="nomeCateg">Categoria {nomeCategoria}</h2>
             <ProdutosStyle>
                 {produtosDaCategoria.map((produto)=>
                     <CardProduto

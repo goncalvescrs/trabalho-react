@@ -1,16 +1,18 @@
 import { Link } from "react-router-dom";
 import "./cabecalho.css";
+import { TiShoppingCart } from "react-icons/ti";
+import { getItem } from "../../services/LocalStorageFuncs";
 
 const Cabecalho = () => {
+  const carrinho = getItem("carrinho");
+
   return (
     <header>
-      <input type="checkbox" id="menu-hamburguer" className="menu-hamburguer" />
-      <label htmlFor="menu-hamburguer" className="hamburguer"></label>
-      <nav className="nav-menu">
+      <div className="logo">
+        <Link to="/">LGeez</Link>
+      </div>
+      <div className="categorias">
         <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
           <li>
             <Link to={"/categoria/eletronico"}>Eletronico</Link>
           </li>
@@ -18,30 +20,22 @@ const Cabecalho = () => {
             <Link to={"/categoria/teclado"}>Teclado</Link>
           </li>
         </ul>
+      </div>
+      <div className="loginCadastro">
         <ul>
           <li>
-            <Link to="/Login"> Login |</Link>
+            <Link to="/Login"> Login </Link>
           </li>
           <li>
-            <Link to="/cadastro"> Cadastro |</Link>
-          </li>
-          <li>
-            <Link to="/carrinho"> Carrinho</Link>
+            <Link to="/cadastro">Cadastro </Link>
           </li>
         </ul>
-      </nav>
-      <div className="logo">
-        <Link to="/">
-          <img src="logo.png" alt="Logo da loja" />
-        </Link>
-      </div>
-      <div className="search-bar">
-        <input type="search" placeholder="Pesquisar" />
-        <button type="submit">Pesquisar</button>
-      </div>
-      <div className="cart">
-        <img src="cart.png" alt="Carrinho de compras" />
-        <span>0 itens</span>
+        <div className="cart">
+          <Link to={"/carrinho"}>
+            <TiShoppingCart />
+          </Link>
+          <span>{carrinho.length}</span>
+        </div>
       </div>
     </header>
   );
