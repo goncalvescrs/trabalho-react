@@ -15,9 +15,9 @@ const ProdutoEspecifico = () => {
   const [cart, setCart] = useState([]);
 
   useEffect(() => {
-    const storedCart = getItem("carrinho");
-    if (storedCart) {
-      setCart(storedCart);
+    const itensCarrinho = getItem("carrinho");
+    if (itensCarrinho) {
+      setCart(itensCarrinho);
     }
     getProduto();
   }, []);
@@ -62,9 +62,9 @@ const ProdutoEspecifico = () => {
           <button onClick={() => handleClickCarrinho(produto)}>
                    Adicionar ao Carrinho
           </button>
-          <button onClick={() => handleClickCarrinho(produto)}>
-            <a href="/carrinho">Finalizar compra</a>
-          </button>
+          <a href="/carrinho" onClick={() => handleClickCarrinho(produto)}>
+            <button>Finalizar compra</button>
+          </a>
         </div>
       </div>
 

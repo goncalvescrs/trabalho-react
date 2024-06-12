@@ -5,7 +5,7 @@ import "./CardProduto.css";
 const CardProduto = ({ id, nome, imgUrl, descricao, preco, likes }) => {
   return (
     <span className='container-card'>
-      <a href={`/produto/${id}`} className="card">
+      <a href={`/produto/${id}`} className="card"> 
         <div className="imagemCard">
           <img src={imgUrl} alt={descricao} />
         </div>

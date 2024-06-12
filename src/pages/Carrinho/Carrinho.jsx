@@ -19,7 +19,7 @@ const Carrinho = () => {
 
     useEffect(() => {
         setItem('carrinho', data);
-        console.log(data)
+        // console.log(data)
     }, [data]);
 
 
@@ -59,7 +59,7 @@ const Carrinho = () => {
     };
 
     const subTotal = data.reduce((acc, cur) => acc + (cur.subTotalItem || cur.preco), 0)
-    console.log('Subtotal total do carrinho:', subTotal)
+    // console.log('Subtotal total do carrinho:', subTotal)
 
     const finalizarCompra = async () => {
         const usuarioLogado = getItem('usuarioLogado');
@@ -124,6 +124,10 @@ const Carrinho = () => {
         }
     }
 
+    const zerarCarrinho = () => {
+        setData([])
+    }
+
     return (
         <>
             <Cabecalho />
@@ -166,7 +170,8 @@ const Carrinho = () => {
                     <div>
                         <h3>{`SubTotal: R$ ${subTotal.toFixed(2)}`}</h3>
                         <br />
-                        <button onClick={finalizarCompra}>Finalizar Compra</button>
+                        <button onClick={finalizarCompra}>Finalizar Compra</button> <br /><br />
+                        <button style={{background: 'red'}} onClick={zerarCarrinho}>Excluir carrinho</button>
                     </div>
                 </DivFinal>
             )}

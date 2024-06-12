@@ -5,9 +5,12 @@ import Cabecalho from "../../components/cabecalho/Cabecalho";
 import Footer from "../../components/Footer/Footer";
 import "./home.css";
 import CardProduto from "../../components/CardProduto/CardProduto";
+import Buscar from "../../components/buscar/Buscar"
 
 const Home = () => {
     const [produtos, setProdutos] = useState([]);
+    const [produtosFiltrados, setProdutosFiltrados] = useState([]);
+    const [termoDeBusca, setTermoDeBusca] = useState('');
 
     useEffect(() => {
         getTodosOsProdutos();
@@ -17,10 +20,25 @@ const Home = () => {
         const response = await api.get('/produto');
         setProdutos(response.data);
     };
+    
+    // filtrar produtos pela busca
+    const handleBuscar = (query) => {
+        setTermoDeBusca(query);
+    };
+    
+    useEffect(() => {
+        const filtrado = produtos.filter((produto) =>
+            produto.nome.toLowerCase().includes(termoDeBusca.toLowerCase()) && produto.quantidade > 0
+        );
+        setProdutosFiltrados(filtrado);
+    }, [termoDeBusca, produtos]);
 
     return (
         <>
             <Cabecalho />
+        
+            {/* <Buscar onSearch={handleSearch}/> */}
+
             <div className="teste">
                 <div className="banner">
                     <Banner
@@ -28,10 +46,10 @@ const Home = () => {
                         descrcao={"descricao do banner"}
                     />
                 </div>
+                <Buscar onSearch={handleBuscar}/>
                 
                 <div className="style-produto">
-                    {produtos
-                        .filter(produto => produto.quantidade > 0)
+                    {produtosFiltrados
                         .map((produto) => (
                         <CardProduto
                             key={produto.id}
